@@ -103,26 +103,15 @@
 	  selectWord();
 	  initialDisplay();
 
-     
-	/*  while (alphaInput	!== -1) {  */
-      document.onkeyup = function(event) { 
-	/*	document.getElementById("game").innerHTML = "Enter '!' to give up and exit the game" +
-	  						"\nMissed tries  " + alphaMiss + 
-	  						"\nThe word is " + lettersDsply + 
-	  						"\n Enter your guess - one letter"; */
-
-		var alphaInput = event.key;
-		console.log(alphaInput);
-	/*  	alphaInput = prompt("Enter '!' to give up and exit the game" +
+	while (lettersList.indexOf("_") !== -1) {
+	  	alphaInput = prompt("Enter '!' to give up and exit the game" +
 	  						"\nMissed tries  " + alphaMiss + 
 	  						"\nThe word is " + lettersDsply + 
 	  						"\n Enter your guess - one letter");
-	    alphaInput = alphaInput.charAt(0); */
+	    alphaInput = alphaInput.charAt(0);
 		updateDisplay();
-	  	loadDisplay(); 
-	
+	  	loadDisplay();
 	}
- /*} */
 
 	  if (winLose) {
 	  	alert("Winner!!!!\nYou guessed the word!!!\n The word is " + lettersDsply);
