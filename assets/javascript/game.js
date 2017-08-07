@@ -1,4 +1,5 @@
-    var wordList = ['EQUESTRIANISM','THROBS','DEMOGRAPHERS','FEARED','LIGHTWEIGHTS','EUPHEMISTIC','PLEDGING','PAINKILLER','COMMONALITY','OVERMANNING','DROPLET','SAUNA','TECHNIQUE','MISCONCEPTION','ORANGUTAN','TELECOMS','FIXERS','INCONSIDERATE','GEEK','MOLTEN','FORSWEAR','ROUNDLY','DOLPHINS','HEADSCARVES','OXIDATION']
+    //var wordList = ['EQUESTRIANISM','THROBS','DEMOGRAPHERS','FEARED','LIGHTWEIGHTS','EUPHEMISTIC','PLEDGING','PAINKILLER','COMMONALITY','OVERMANNING','DROPLET','SAUNA','TECHNIQUE','MISCONCEPTION','ORANGUTAN','TELECOMS','FIXERS','INCONSIDERATE','GEEK','MOLTEN','FORSWEAR','ROUNDLY','DOLPHINS','HEADSCARVES','OXIDATION']
+	var wordList = ['CHARGER','PHONE','COMPUTER','PENS','LIGHT','COFFEECUP','CALCULATOR','IPAD','SCISSORS']
 	var alphaInput;
 	var alphaMiss =	 [];
 	var alphaSuccess = false;
@@ -9,6 +10,7 @@
 	var lettersDsply;
 	var dashNumber = 0;
 	var winLose = false;
+	var winCount = 0;
 
 	function checkHit(guess) {
 	  for (var i = 0; i < hangman.length; i++) {
@@ -32,7 +34,7 @@
 
 	function displayMisses() {
 	  if (alphaMiss.indexOf(guess) === -1) {
-	  	alphaMiss.push(guess);
+	  	alphaMiss.push(guess.toUpperCase());
 	  }
 	  else {
 	  	alert("That letter " + guess + " has already been guessed")
@@ -51,7 +53,7 @@
 		var limit = 25,
     		amount = 3,
     		lower_bound = 0,
-    		upper_bound = 24,
+    		upper_bound = 8,
     		unique_random_numbers = [];
 
 			var random_number = Math.round(Math.random()*(upper_bound - lower_bound) + lower_bound);
@@ -88,8 +90,8 @@
 	  }
 	}
 	console.log(lettersList);
-	  if (alphaSuccess === false && alphaMiss.indexOf(alphaInput) === -1) {
-	  	alphaMiss.push(alphaInput);
+	  if (alphaSuccess === false && alphaMiss.indexOf(alphaInput.toUpperCase()) === -1) {
+	  	alphaMiss.push(alphaInput.toUpperCase());
 	  }
 	}
 
@@ -104,28 +106,23 @@
 	  initialDisplay();
 
      
-	/*  while (alphaInput	!== -1) {  */
-      document.onkeyup = function(event) { 
-	/*	document.getElementById("game").innerHTML = "Enter '!' to give up and exit the game" +
-	  						"\nMissed tries  " + alphaMiss + 
-	  						"\nThe word is " + lettersDsply + 
-	  						"\n Enter your guess - one letter"; */
-
-		var alphaInput = event.key;
-		console.log(alphaInput);
-	/*  	alphaInput = prompt("Enter '!' to give up and exit the game" +
+	while (lettersList.indexOf("_") !== -1) {
+	  	alphaInput = prompt("Enter '!' to give up and exit the game" +
 	  						"\nMissed tries  " + alphaMiss + 
 	  						"\nThe word is " + lettersDsply + 
 	  						"\n Enter your guess - one letter");
-	    alphaInput = alphaInput.charAt(0); */
+	    alphaInput = alphaInput.charAt(0); 
 		updateDisplay();
 	  	loadDisplay(); 
 	
 	}
- /*} */
+ 
 
 	  if (winLose) {
-	  	alert("Winner!!!!\nYou guessed the word!!!\n The word is " + lettersDsply);
+	  	winCount = ++winCount;
+	  	alert("Winner!!!!\nYou have won " + winCount +
+	  		 " games.\nYou guessed the word!!!\n The word is " + lettersDsply);
+
 	  }
 	  else {
 	  	alert("You gave up!!!\nThe word is " + lettersDsply);	
