@@ -1,7 +1,7 @@
 
 	// GLOBALS variable list
 	var wordList = ['NOTEBOOK','GLASSES','PENCIL','HAND','PLANT','PAPER','WATCH'];
-	var alphaInput;							//user guess
+	var alphaInput = "";					//user guess
 	var alphaMissList =	 [];				//list of previous guesses
 	var alphaFound = false;					//boolean indicator if the user guessed an existing letter
 	var hangmanWord = "";					//the word selected from the wordList
@@ -26,6 +26,12 @@
       				"<br><br>" );
       				
       $("#right-side").append(rightDiv);
+
+	// load top input line
+	  var topDiv = $("<div>");
+      topDiv.html("Enter your guess: " +
+      				'<input id="keyInput" size="3" type="text">');
+      $("#top-center").html(topDiv);
 
 	// select a word out of the word list array
 	function selectWord() {
@@ -114,25 +120,20 @@ $(document).ready(function() {
 		  // prep the screen for displaying the _ characters
 	  	initialDisplay();
 	  	console.log(lettersList);
-	// load top input line
-	  var topDiv = $("<div>");
-      topDiv.html("Enter your guess: " +
-      				'<input id="keyInput" size="3" type="text">');
-      $("#top-center").html(topDiv);
-
 
 	// continue the game as long as there are stil letters to guess, you didn't give up ("!")
 	// and you tried less than 10 guesses
-	while (lettersList.indexOf("_") !== -1 && alphaMissList.length < 10 && alphaInput !== "!") {
-		console.log("into the game");
+	console.log(lettersList.indexOf("_"));
+	console.log(alphaMissList.length);
+	console.log(alphaInput);
 
-		// get keypress and assign to alphaInput
-		$("#game-space").on("keypress",function(e) {
-			if (e.which !== 0) {
-			  alphaInput = $("#keyInput").String.fromCharCode(this.which);
-			}
-		});
-		console.log("#keyInput" + alphaInput);
+		// get input key
+		$(document).keyup( function(event) {
+    	alphaInput = event.key;
+      	alphaInput = alphaInput.toUpperCase();  
+		console.log("#keyInput " + alphaInput);
+
+	while (lettersList.indexOf("_") !== -1 && alphaMissList.length < 10 && alphaInput !== "!") {
 		    	
     //	alphaInput = prompt("Enter '!' to give up and exit the game" +
   	// 						"\nMissed tries  " + alphaMissList + 
@@ -142,10 +143,12 @@ $(document).ready(function() {
   	//   alphaInput = alphaInput.charAt(0);
   	    	
 
-			updateDisplay();
+		updateDisplay();
 	  	loadDisplay(); 	
-	
-}
+	  }
+
+	});
+
 
 	  if (lettersList.indexOf("_") === -1) {
 	  	winCount = ++winCount;
