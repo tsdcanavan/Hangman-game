@@ -81,13 +81,14 @@ function bldScreen() {
       leftDiv.html("Click anywhere to start the game<br>" +
       				"Enter '!' to give up and exit the game<br>" +
       				"Guesses Remaining: " + numGuess + "<br>" +
-      				"Games won: " + wins +"<br>" );
+      				"Games won: " + wins +"<br>" +
+      				"Games lost: " + loss  );
       $("#left-side").html(leftDiv);
 
 // load right-side of screen
 	var rightDiv = $("<div>");
-    rightDiv.html("Missed tries  " + missGuess + "<br><br>" +
-    				lettersDsply + "<br>" );
+    rightDiv.html("Missed tries <br> " + missGuess + "<br><br>" +
+    				lettersDsply + "<br><br>" );
       $("#right-side").html(rightDiv);
 
 // load top line
